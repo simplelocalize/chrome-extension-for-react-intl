@@ -4,6 +4,24 @@ The [SimpleLocalize Chrome extension](https://simplelocalize.io/docs/integration
 translation most reliably by its `data-translation-key` attribute. This mode adds that attribute to every
 translated element on the site.
 
+## Setup
+
+Copy `SimpleLocalize.tsx` and `translation-keys.ts` to your app and put `<SimpleLocalize>` inside your
+`<IntlProvider>`:
+
+```tsx
+import { SimpleLocalize } from "./SimpleLocalize";
+
+<IntlProvider locale={locale} messages={messages}>
+  <SimpleLocalize>
+    <App/>
+  </SimpleLocalize>
+</IntlProvider>
+```
+
+Messages from `<FormattedMessage>` and `useIntl().formatMessage` get their keys; an `intl` object created outside
+this tree (e.g. with `createIntl`) doesn't.
+
 ## Usage
 
 - Turn on: open any page with `?i18n-keys=1`, e.g. `https://example.com/de/?i18n-keys=1`.
